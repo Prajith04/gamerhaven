@@ -1,0 +1,68 @@
+.banner {
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.banner .slider {
+  position: absolute;
+  width: 200px;
+  height: 250px;
+  top: 40%;
+  left: calc(50% - 100px);
+  transform-style: preserve-3d;
+  transform: perspective(1000px) rotateY(var(--rotation));
+  transition: transform 0.1s ease-out; /* Smooth out rotation updates */
+}
+
+.banner .slider.paused {
+  animation-play-state: paused;
+}
+
+.banner .slider .item {
+  position: absolute;
+  inset: 0 0 0 0;
+  transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(450px) scale(0.8);
+  transition: transform 0.5s ease;
+}
+
+.banner .slider .item:hover {
+  transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(460px) scale(0.9);
+  cursor: pointer;
+}
+
+.banner .slider .item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@keyframes autorun {
+  from {
+    transform: perspective(1000px) rotateY(0deg);
+  }
+  to {
+    transform: perspective(1000px) rotateY(360deg);
+  }
+}
+.button{
+  /* make the button more stylished and modern for the body with black background*/
+  float: right;
+  /*button size*/
+  width: 100px;
+  /*button style*/
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  /*button text color*/
+  color: black;
+  border: none;
+  border-radius: 10px;
+  color: aqua;
+  padding: 15px 3px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}

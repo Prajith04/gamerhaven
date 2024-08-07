@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three.js Gaming Controller</title>
+    <style>
+        body { margin: 0; }
+        #three { width: 100vw; height: 100vh; }
+    </style>
+</head>
+<body>
+    <div id="three"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/loaders/GLTFLoader.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function($) {
+            let mouseX = 0;
+            let mouseY = 0;
+            let distance = 1;
+
+            function get_pointlight(intensity, color) {
+                return new THREE.PointLight(color, intensity);
+            }
+
+            function init() {
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(45, ($(window).width() / $(window).height()), 1, 100);
+                const renderer = new THREE.WebGLRenderer();
+                const clock = new THREE.Clock();
+                let t = 0;
+                camera.position.z = 35;
+
+                // Load gaming controller model
+                const loader = new THREE.GLTFLoader();
+                loader.load('path/to/your/controller_model.glb', function(gltf) {
+                    const controller = gltf.scene;
+                    scene.add(controller);
+                    controller.position.y = -5; // Adjust position as needed
+                }, undefined, function(error) {
+                    console.error(error);
+                });
+
+                const pointLight = get_pointlight(2, 0xffffff);
+                pointLight.position.y = 10;
+                scene.add(pointLight);
+                scene.add(camera);
+
+                renderer.setSize(window.innerWidth - 15, window.innerHeight);
+                document.getElementById('three').appendChild(renderer.domElement);
+
+                $('#three').find('canvas')[0].addEventListener('mousemove', mousemoveevent);
+
+                function mousemoveevent(e) {
+                    let canvas = $("#three").find('canvas'),
+                        canvas_width = canvas.width(),
+                        canvas_height = canvas.height(),
+                        canvas_center_x = $(e.target).offset().left + (canvas_width / 2),
+                        canvas_center_y = $(e.target).offset().top + (canvas_height / 2);
+                    let x_diff = e.clientX - canvas_center_x,
+                        y_diff = e.clientY - canvas_center_y;
+                    mouseX = x_diff / 15;
+                    mouseY = y_diff / 15;
+
+                    distance = Math.sqrt(Math.pow(x_diff, 2) + Math.pow(y_diff, 2)) / 200;
+                }
+
+                update(renderer, scene, camera, clock, t);
+            }
+
+            function update(renderer, scene, camera, clock, t) {
+                camera.position.x += (mouseX - camera.position.x) * .05;
+                camera.position.y += (-mouseY - camera.position.y) * .04;
+                camera.lookAt(scene.position);
+
+                // If your model has animations or you need to update something else, do it here
+
+                renderer.render(scene, camera);
+                requestAnimationFrame(function() {
+                    update(renderer, scene, camera, clock, t);
+                });
+            }
+
+            init();
+        });
+    </script>
+</body>
+</html>

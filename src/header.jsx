@@ -9,7 +9,7 @@ function Header(){
          <h1 className='gamerhaven'>GAMERHAVEN</h1>
       </div>
       <div className="nav">
-         <a href="/home">HOME</a>
+         <a href="/">HOME</a>
          <a href="/company">GAMES</a>
          <a href="/contact">CONTACT</a>
          <a href="/about">ABOUT</a>

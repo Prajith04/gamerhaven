@@ -2,7 +2,7 @@ import Spline from '@splinetool/react-spline';
 function Home(){
     return(
         <>
-             <Spline scene="https://prod.spline.design/Bcth7pE8ZxOeFx3k/scene.splinecode" />
+             <Spline scene="https://prod.spline.design/0mbujUv8APpbWb9t/scene.splinecode" />
         </>
     )
 };

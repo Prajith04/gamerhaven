@@ -88,6 +88,9 @@ function Desc({ name, description, sysreq, image }) {
           )}
         </div>
       </div>
+      <div className="buy">
+        <button className="buy-button">BUY</button>
+      </div>
     </div>
   );
 }

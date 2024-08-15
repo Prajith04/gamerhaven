@@ -6,6 +6,8 @@ import Company from './company';
 import About from './About';
 import Games from './games';
 import Desc from './desc';
+import Login from './login'
+import Signup from './signup'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -13,10 +15,9 @@ function App() {
   const [company, setCompany] = useState('');
   const [detail,setdetail]=useState('');
   const [image,setimage]=useState('');
-
   return (
     <>
-      <Header/>
+      <Header />
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -34,6 +35,8 @@ function App() {
             path="/company/games/description" 
             element={<Desc name={detail.name} description={detail.description} sysreq={detail.system_requirements} image={image}/>} 
           />
+          <Route path="/login" element={<Login/>} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </Router>
     </>

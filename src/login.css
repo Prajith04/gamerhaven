@@ -1,0 +1,42 @@
+.page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box{
+    margin-top: 100px;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 20px;
+}
+.forgot{
+    font-size: 16px;
+    padding: 5px;
+}
+
+input[type="text"], input[type="password"]{
+    margin: 10px;
+    font-size: 20px;
+
+}
+.login-h2{
+    font-size: 30px;
+}
+input[type='submit']{
+    font-size: 20px;
+    border-radius: 10px;
+    padding:5px 10px 5px;
+    margin:20px 0px 10px;
+}
+.signup-p{
+    font-size: 16px;
+}
+.signup-p a{
+    font-size: 16px;
+    padding: 0px;
+}

@@ -1,6 +1,5 @@
 body {
   /* Add a max-width to the body to center the cards */
-  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
 }

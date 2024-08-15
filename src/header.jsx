@@ -14,6 +14,10 @@ function Header(){
          <a href="/contact">CONTACT</a>
          <a href="/about">ABOUT</a>
       </div>
+      <div className='user'>
+         <a href="#">LOGIN</a>
+         <a href="#">SIGNUP</a>
+      </div>
       </div>
       </>
     )

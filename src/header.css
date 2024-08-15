@@ -1,6 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 body{
   background-color: black;
+  max-width:none;
 }
 .logo{
   width: 60px;
@@ -20,13 +21,11 @@ body{
 .nav{
   display: flex;
   flex-direction:row;
-  float: right;
 }
 
 .header{
+  display: flex;
   justify-content: space-between;
-  z-index: 1;
-  width: 90%;
 }
 a{
   padding: 30px;
@@ -36,4 +35,7 @@ a{
 }
 a:hover{
   color:gray
+}
+.user{
+  margin-top: 30px;
 }

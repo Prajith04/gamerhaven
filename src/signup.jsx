@@ -38,7 +38,7 @@ function Signup(){
         })
         .catch((error) => {
             console.error('Error:', error);
-            setMessage(data.message)
+            setMessage( 'error signing up')
             // Handle error in signup
         });
         

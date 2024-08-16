@@ -28,7 +28,7 @@ function Header({ auth, setAuth }) {
         <div className='user'>
           {auth ? (
             <>
-              <button onClick={handleLogout}>Logout</button>
+              <a onClick={handleLogout}>Logout</a>
             </>
           ) : (
             <>

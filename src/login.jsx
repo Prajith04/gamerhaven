@@ -1,5 +1,5 @@
 import './login.css';
-import { useState,useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Login({setAuth}) {
@@ -56,7 +56,7 @@ function Login({setAuth}) {
                 />
                 <a className='forgot' href="#">Forgot password?</a>
                 <input
-                    type="button"
+                    type="submit"
                     value="Login"
                     onClick={handleLogin}
                 />

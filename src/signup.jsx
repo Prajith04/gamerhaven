@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import './signup.css'
 import { useNavigate } from 'react-router-dom';
 function Signup(){
     const navigate = useNavigate();
+    const [message,setMessage]=useState('');
     function handleSignup() {
         
         const username = document.getElementById('username').value;
@@ -27,12 +29,16 @@ function Signup(){
         })
         .then(response => response.json())
         .then(data => {
-            console.log('Success:', data);
+            if(data.message==true){
             navigate('/login');
+            }else{
+                setMessage(data.message)
+            }
             // Handle successful signup response
         })
         .catch((error) => {
             console.error('Error:', error);
+            setMessage(data.message)
             // Handle error in signup
         });
         
@@ -47,6 +53,7 @@ function Signup(){
          <input type="password"placeholder='confirm password'/>
          <a className='forgot' href="#">Forgot password?</a>
          <input type="submit" value="Signup" onClick={handleSignup}/>
+         {message && <p className='error'>{message}</p>}
          <p className='signup-p'>Already have an account? <a href="/login">Login</a></p>
  
         </div> 

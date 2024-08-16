@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Header from './header';
 import Home from './Home';
 import Contact from './Contact';
@@ -15,9 +15,16 @@ function App() {
   const [company, setCompany] = useState('');
   const [detail,setdetail]=useState('');
   const [image,setimage]=useState('');
+  const [auth,setAuth]=useState(false);
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setAuth(true);
+    }
+  }, []);
   return (
     <>
-      <Header />
+      <Header setAuth={setAuth} auth={auth} />
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -35,7 +42,7 @@ function App() {
             path="/company/games/description" 
             element={<Desc name={detail.name} description={detail.description} sysreq={detail.system_requirements} image={image}/>} 
           />
-          <Route path="/login" element={<Login/>} />
+          <Route path="/login" element={<Login setAuth={setAuth}/>} />
           <Route path="/signup" element={<Signup />} />
         </Routes>
       </Router>

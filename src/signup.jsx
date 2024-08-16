@@ -1,8 +1,9 @@
 import './signup.css'
 import { useNavigate } from 'react-router-dom';
 function Signup(){
+    const navigate = useNavigate();
     function handleSignup() {
-        navigate=useNavigate();
+        
         const username = document.getElementById('username').value;
         const email=document.getElementById('email').value;
         const password = document.getElementById('password').value;

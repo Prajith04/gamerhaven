@@ -1,13 +1,12 @@
 import './login.css';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Login() {
+function Login({setAuth}) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
-
     function handleLogin() {
         const loginData = {
             name: username,
@@ -27,6 +26,8 @@ function Login() {
                 // Store the JWT in localStorage
                 localStorage.setItem('token', data.accessToken);
                 navigate('/'); // Redirect to home on successful login
+                setAuth(true);
+
             } else {
                 setError(data.message || 'Login failed'); // Set error message
             }

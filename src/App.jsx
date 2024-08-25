@@ -8,6 +8,7 @@ import Games from './games';
 import Desc from './desc';
 import Login from './login'
 import Signup from './signup'
+import Cart from './cart'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -16,6 +17,8 @@ function App() {
   const [detail,setdetail]=useState('');
   const [image,setimage]=useState('');
   const [auth,setAuth]=useState(false);
+  const name = localStorage.getItem('name');
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -40,10 +43,11 @@ function App() {
           />
           <Route 
             path="/company/games/description" 
-            element={<Desc name={detail.name} description={detail.description} sysreq={detail.system_requirements} image={image}/>} 
+            element={<Desc game={detail.name} description={detail.description} sysreq={detail.system_requirements} image={image} name={name}/>} 
           />
-          <Route path="/login" element={<Login setAuth={setAuth}/>} />
+          <Route path="/login" element={<Login setAuth={setAuth} />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </Router>
     </>

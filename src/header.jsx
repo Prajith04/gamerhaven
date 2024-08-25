@@ -1,7 +1,6 @@
 import './header.css';
 import logo from './assets/logo.png';
 import { useEffect } from 'react';
-
 function Header({ auth, setAuth }) {
   useEffect(() => {
     console.log('Auth state changed:', auth); // Debugging line
@@ -9,6 +8,7 @@ function Header({ auth, setAuth }) {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('name');
     setAuth(false);
   };
 
@@ -28,6 +28,7 @@ function Header({ auth, setAuth }) {
         <div className='user'>
           {auth ? (
             <>
+              <a href="/cart">🛒</a>
               <a onClick={handleLogout}>Logout</a>
             </>
           ) : (

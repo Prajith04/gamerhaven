@@ -25,8 +25,10 @@ function Login({setAuth}) {
             if (data.accessToken) {
                 // Store the JWT in localStorage
                 localStorage.setItem('token', data.accessToken);
+                localStorage.setItem('name',data.name);
                 navigate('/'); // Redirect to home on successful login
                 setAuth(true);
+                  
 
             } else {
                 setError(data.message || 'Login failed'); // Set error message

@@ -1,0 +1,14 @@
+.pgames{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 30px;
+    font-size: 25px;
+}
+.ptitle{
+    font-size: 40px;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

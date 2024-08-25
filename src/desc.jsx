@@ -3,7 +3,7 @@ import { gsap } from "gsap";
 import "./desc.css";
 gsap.defaults({ debug: false });
 
-function Desc({ name, description, sysreq, image }) {
+function Desc({ game, description, sysreq, image,name}) {
   const imageRef = useRef(null);
   const titleRef = useRef(null);
   const detailsRefs = useRef([]);
@@ -11,14 +11,34 @@ function Desc({ name, description, sysreq, image }) {
   const aboutGameRef = useRef(null);
   detailsRefs.current = [];
   const [Switch, setSwitch] = useState(false);
-
   const details = [
     `Processor: ${sysreq.Processor}`,
     `Memory: ${sysreq.Memory}`,
     `Graphics: ${sysreq.Graphics}`,
     `OS: ${sysreq.OS}`,
   ];
-
+  function handleBuy(){
+   fetch('http://localhost:3000/buy', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ game:game,name:name }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message) {
+          alert(data.message);
+        } else {
+          alert('Failed to purchase game');
+        }
+      })
+      .catch((error) => {
+        console.error('Error purchasing game:', error);
+        alert('Failed to purchase game');
+      });
+  
+  }
   const switchMode = () => {
     setSwitch(prevSwitch => !prevSwitch);
   };
@@ -62,7 +82,7 @@ function Desc({ name, description, sysreq, image }) {
   return (
     <div className="desc">
       <h2 ref={titleRef} className="title">
-        {name}
+        {game}
       </h2>
       <div className="header" id="header" onClick={switchMode}>
         <div id="image-container" className="image-container">
@@ -89,7 +109,7 @@ function Desc({ name, description, sysreq, image }) {
         </div>
       </div>
       <div className="buy">
-        <button className="buy-button">BUY</button>
+        <button className="buy-button" onClick={handleBuy}>BUY</button>
       </div>
     </div>
   );

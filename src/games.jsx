@@ -1,130 +1,82 @@
 import React from 'react';
 import './games.css';
+import { useNavigate } from 'react-router-dom';
 import gtav from './assets/gtav.jpeg';
 import gtavi from './assets/gtavi.jpeg';
 import gtaiv from './assets/gtaiv.jpeg';
 import rdr from './assets/rdr.jpeg';
 import rdr2 from './assets/rdr2.jpeg';
 import maxpayne from './assets/maxpayne.jpeg';
-import michael from './assets/michael.png'
-import max from './assets/max.png'
-import morgan from './assets/morgan.png'
-import nicko from './assets/nicko.png'
-import six from './assets/6.png'
-import { useNavigate } from 'react-router-dom';
+import michael from './assets/michael.png';
+import max from './assets/max.png';
+import morgan from './assets/morgan.png';
+import nicko from './assets/nicko.png';
+import six from './assets/6.png';
 
 const gamesData = {
     "rockstar": {
         "games": ['gtavi', 'gtav', 'gtaiv', 'rdr', 'rdr2', 'maxpayne'],
         "images": [gtavi, gtav, gtaiv, rdr, rdr2, maxpayne],
-        'characters':[six,michael,nicko,morgan,morgan,max],
-        'detail': [
-            {
-                'name': 'Grand Theft Auto VI',
-                'description': 'Grand Theft Auto VI is an upcoming open-world action-adventure game developed by Rockstar Games. It is the sixth main installment in the Grand Theft Auto series.',
-                'system_requirements': {
-                    'Processor': 'AMD Ryzen 5 3600',
-                    'Memory': '8 GB',
-                    'Graphics': 'NVIDIA GeForce RTX 3070 or AMD Radeon RX 6800 XT',
-                    'OS': 'Windows Vista/7/8/10 (64-bit)',
-                   
-                   
-                }
-            },
-            {
-                'name': 'Grand Theft Auto V',
-                'description': "Grand Theft Auto V is a 2013 action-adventure game developed by Rockstar North and published by Rockstar Games. It is the seventh main entry in the Grand Theft Auto series, following 2008's Grand Theft Auto IV, and the fifteenth instalment overall. Set within the fictional state of San Andreas, based on Southern California, the single-player story follows three protagonists—retired bank robber Michael De Santa (Ned Luke), street gangster Franklin Clinton (Shawn Fonteno), and drug dealer and gunrunner Trevor Philips (Steven Ogg), and their attempts to commit heists while under pressure from a corrupt government agency and powerful criminals. Players freely roam San Andreas's open world countryside and fictional city of Los Santos, based on Los Angeles.The game world is navigated on foot and by vehicle, from either a third-person or first-person perspective. Players control the protagonists throughout single-player and switch among them, both during and outside missions. The story is centred on the heist sequences, and many missions involve shooting and driving gameplay. A 'wanted' system governs the aggression of law enforcement response to players who commit crimes. In Grand Theft Auto Online, the game's online multiplayer mode, up to 30 players engage in a variety of different cooperative and competitive game modes.",
-                'system_requirements': {
-                    'Processor': 'Pentium 4 3.0 GHz',
-                    'Memory': '512 MB',
-                    'Graphics': 'DirectX 9.0c or ATI Radeon X1600 or GeForce 6600 GT',
-                    'OS': 'Windows Vista/7/8/10 (64-bit)',
-                },
-            },
-            {
-                'name': 'Grand Theft Auto IV',
-                'description': 'Grand Theft Auto IV is an open-world action-adventure game developed by Rockstar North and published by Rockstar Games. It is the fourth main installment in the Grand Theft Auto series.',
-                'system_requirements': {
-                    'Processor': 'Intel Core 2 Duo E6600 2.4GHz',
-                    'Memory': '1 GB',
-                    'Graphics': 'NVIDIA GeForce 7800 GT or ATI X1600 XT',
-                    'OS': 'Windows XP (SP3) / Vista (SP1)/ 7/ 8/ 10'
-                }
-            },
-            {
-                'name': 'Red Dead Redemption',
-                'description': 'Red Dead Redemption is an open-world western action-adventure game developed by Rockstar Games. It is set in the late 1800s and follows the story of John Marston, a member of the Van der Linde gang, and his experiences in the American Old West.',
-                'system_requirements': {
-                    'Processor': 'Intel Pentium 4 3.0 GHz',
-                    'Memory': '2 GB',
-                    'Graphics': 'NVIDIA GeForce 6600/ATI Radeon X1600',
-                    'OS': 'Windows XP/Vista/7/8/10'
-                }
-            },
-            {
-                'name': 'Red Dead Redemption 2',
-                'description': 'Red Dead Redemption 2 is an open-world western action-adventure game developed by Rockstar Games. It is the sequel to Red Dead Redemption and the latest installment in the Red Dead series.',
-                'system_requirements': {
-                    'Processor': 'Intel Core i5-2400',
-                    'Memory': '8 GB',
-                    'Graphics': 'NVIDIA GeForce GTX 660 or AMD Radeon HD 7870',
-                    'OS': 'Windows 7/8/10'
-                }
-            },
-            {
-                'name': 'Max Payne',
-                'description': 'Max Payne is an action-adventure game developed by Rockstar North and published by Rockstar Games. It is the first game in the Max Payne series and was released in 2012.',
-                'system_requirements': {
-                    'Processor': 'Intel Pentium 4 3.0 GHz',
-                    'Memory': '512 MB',
-                    'Graphics': 'DirectX 9',
-                    'OS': 'Windows XP/Vista/7/8/10'
-                }
-            },
-        ]
+        'characters': [six, michael, nicko, morgan, morgan, max],
     }
     // Add other companies and their games here if needed
 };
 
-function Games({ company ,setdetail,setimage}) {
+function Games({ company, setdetail, setimage }) {
     const games = gamesData[company.toLowerCase()]; // Get games and images for the specified company
-    const navigate=useNavigate();
+    const navigate = useNavigate();
+
     if (!games) {
         return <div>No games found for the specified company.</div>;
     }
 
-    return(
-    <>
-    <div className='company-name'>
-        <h2 className='company-h2'>{company.toUpperCase()}</h2>
-    </div>
-    <div className='cards'>
-        {games.games.map((game, index) => (
-            <a
-            href="/company/games/description"
-            onClick={(e) => {
-              e.preventDefault();
-              setdetail(games.detail[index]);
-              setimage(games.images[index]);
-              navigate('/company/games/description');
-            }}
-          >
-        <div key={index} className="card">
-        
-        <div class="wrapper" >
-      <img src={games.images[index]} className="cover-image" />
-    </div>
-    
-    <img src={games.characters[index]} className="character" />
-  </div>
-  </a>
-        ))}
-        
-        </div>
+    const fetchGameDetails = async (game) => {
+        try {
+            const response = await fetch(`http://localhost:3000/games/${game}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            if (response.ok) {
+                const gameDetails = await response.json();
+                setdetail(gameDetails.detail);  // Assuming the server returns the detail object
+            } else {
+                console.error('Failed to fetch game details');
+            }
+        } catch (error) {
+            console.error('Error fetching game details:', error);
+        }
+    };
 
-</>
-    )
+    return (
+        <>
+            <div className='company-name'>
+                <h2 className='company-h2'>{company.toUpperCase()}</h2>
+            </div>
+            <div className='cards'>
+                {games.games.map((game, index) => (
+                    <a
+                        href="/company/games/description"
+                        key={index}
+                        onClick={async (e) => {
+                            e.preventDefault();
+                            await fetchGameDetails(game);  // Fetch game details from the server
+                            setimage(games.images[index]);
+                            navigate('/company/games/description');
+                        }}
+                    >
+                        <div className="card">
+                            <div className="wrapper">
+                                <img src={games.images[index]} className="cover-image" alt={game} />
+                            </div>
+                            <img src={games.characters[index]} className="character" alt="character" />
+                        </div>
+                    </a>
+                ))}
+            </div>
+        </>
+    );
 }
 
 export default Games;
-{/* <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-title.png" className="title" /> */}

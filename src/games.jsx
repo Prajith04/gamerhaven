@@ -142,7 +142,7 @@ function Games({ company, setdetail, setimage }) {
 
     const fetchGameDetails = async (game) => {
         try {
-            const response = await fetch(`http://localhost:3000/games/${game}`, {
+            const response = await fetch(`https://gamerhaven-backend.vercel.app/games/${game}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

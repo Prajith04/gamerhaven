@@ -8,7 +8,7 @@ const Cart = () => {
     useEffect(() => {
         const fetchCart = async () => {
             try {
-                const response = await fetch('http://localhost:3000/cart', {
+                const response = await fetch('https://gamerhaven-backend.vercel.app/cart', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

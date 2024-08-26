@@ -13,7 +13,7 @@ function Login({setAuth}) {
             password: password
         };
 
-        fetch('http://localhost:3000/login', {
+        fetch('https://gamerhaven-backend.vercel.app/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

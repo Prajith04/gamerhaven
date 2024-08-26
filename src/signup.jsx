@@ -20,7 +20,7 @@ function Signup(){
         };
     
         // Send a POST request to the Express server
-        fetch('http://localhost:3000/signup', {
+        fetch('https://gamerhaven-backend.vercel.app/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

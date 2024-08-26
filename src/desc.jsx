@@ -18,7 +18,7 @@ function Desc({ game, description, sysreq, image,name}) {
     `OS: ${sysreq.OS}`,
   ];
   function handleBuy(){
-   fetch('http://localhost:3000/buy', {
+   fetch('https://gamerhaven-backend.vercel.app/buy', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
